@@ -76,6 +76,15 @@ def detail_reply_u(request, recipe_pk, reply_pk):
         return render(request, 'recipe/detail.html', context)
     return redirect('recipe:detail', recipe.pk)
 
+
+def detail_reply_d(request, recipe_pk, reply_pk):
+    reply_up = get_object_or_404(Recipe_Reply, pk=reply_pk)
+    if reply_up.user == request.user:
+        reply_up.delete()
+    
+    return redirect('recipe:detail', recipe_pk)
+
+
 def update(request, recipe_pk, user_pk):
     recipe = get_object_or_404(Recipe, pk=recipe_pk)
     if recipe.user.pk == user_pk:
