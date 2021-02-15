@@ -1,3 +1,7 @@
+
+# Created by https://www.toptal.com/developers/gitignore/api/django,python,venv
+# Edit at https://www.toptal.com/developers/gitignore?templates=django,python,venv
+
 ### Django ###
 *.log
 *.pot
@@ -218,3 +222,5 @@ dmypy.json
 [Ss]cripts
 pyvenv.cfg
 pip-selfcheck.json
+
+# End of https://www.toptal.com/developers/gitignore/api/django,python,venv

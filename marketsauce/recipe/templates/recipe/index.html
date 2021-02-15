@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+  <h1>recipe_index</h1>
+  {% for rip in recipe %}
+    <tr>
+      <th scope="row">{{ rip.pk }}</th>
+      <td><a href="{% url 'recipe:detail' rip.pk %}">{{ rip.title }}</a></td>
+      <td>{{ rip.user.profile.nickname }}</td>
+      <td>{{ rip.created_at }}</td>
+      <hr>
+    </tr>
+  {% endfor %}
+</div>
+
+<script>
+</script>
+
+<style>
+</style>
+
+{% endblock %}

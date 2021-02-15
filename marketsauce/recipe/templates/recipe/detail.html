@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <div>
+        <h1>recipe_detail</h1>
+        {{ recipe.title }}
+        {{ recipe.content }}
+        {{ recipe.updatedated_at }}
+        {{ recipe.user.profile.nickname }}
+    </div>
+    <div>
+        <a href="{% url 'recipe:update' recipe.pk user.pk %}">수정하기</a>
+        <a href="{% url 'recipe:delete' recipe.pk user.pk %}">삭제하기</a>
+    </div>
+    
+    <div>
+        {% if update == False %}
+        <form action="{% url 'recipe:detail' recipe.pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="작성하기">
+        </form>
+        {% else %}
+        <form action="{% url 'recipe:reply' recipe.pk rp.pk %}" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="수정하기">
+        </form>
+        {% endif %}
+        {% for rp in reply %}
+        <tr>
+            <th scope="row">{{ rp.pk }}</th>
+            <td>{{ rp.user.profile.nickname }}</td>
+            <td>{{ rp.content }}</td>
+            <td>{{ rp.created_at }}</td>
+            <a href="{% url 'recipe:reply' recipe.pk rp.pk %}">수정하기</a>
+        </tr>
+        <hr>
+        {% endfor %}
+    </div>
+</div>
+
+
+
+{% endblock %}

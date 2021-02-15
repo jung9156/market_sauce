@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div>
+    <h5>레시피 작성</h5>
+    <hr>
+    <!-- 새글 작성 폼 -->
+    {% if update == False %}
+    <form action="{% url 'recipe:write' %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        
+        <input type="submit" value="submit">
+    <!-- 수정 폼 -->
+    {% else %}
+    <h1>수정</h1>
+    <form action="{% url 'recipe:update' recipe.pk recipe.user.id %}" method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="submit">
+    </form>
+    {% endif %}
+</div>
+{% endblock %}
