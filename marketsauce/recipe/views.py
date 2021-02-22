@@ -118,3 +118,17 @@ def delete(request, recipe_pk, user_pk):
         return redirect('recipe:index')
     else:
         return redirect('recipe:detail', recipe.pk)
+
+
+def recommend(request, recipe_pk):
+    recipe = get_object_or_404(Recipe, pk=recipe_pk)
+    user = request.user
+    if user in recipe.user_recommend.all():
+        recipe.user_recommend.remove(user)
+        recipe.recommend_count -= 1
+        recipe.save()
+    else:
+        recipe.user_recommend.add(user)
+        recipe.recommend_count += 1
+        recipe.save()
+    return redirect('recipe:detail', recipe.pk)

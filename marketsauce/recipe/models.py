@@ -10,7 +10,7 @@ class Recipe(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     user_recommend = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="recommend_recipe", blank=True)
     user_favorit = models.ManyToManyField(settings.AUTH_USER_MODEL, related_name="favorit_recipe", blank=True)
-
+    recommend_count = models.IntegerField(default=0)
 
 class Recipe_Reply(models.Model):
     user = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name= "user_reply")

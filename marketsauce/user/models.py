@@ -14,4 +14,3 @@ class Profile(models.Model):
     class Meta:
         db_table = 'account_profile'
         app_label = 'account' # <- account 앱 카테고리에서 관리되도록 한다.
-        

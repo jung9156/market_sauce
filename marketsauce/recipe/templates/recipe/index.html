@@ -9,6 +9,7 @@
       <td><a href="{% url 'recipe:detail' rip.pk %}">{{ rip.title }}</a></td>
       <td>{{ rip.user.profile.nickname }}</td>
       <td>{{ rip.created_at }}</td>
+      <td>{{ rip.recommend_count }}</td>
       <hr>
     </tr>
   {% endfor %}
