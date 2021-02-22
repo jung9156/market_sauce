@@ -132,3 +132,4 @@ def recommend(request, recipe_pk):
         recipe.recommend_count += 1
         recipe.save()
     return redirect('recipe:detail', recipe.pk)
+    #이러면 수정이 된것으로 보이나?
